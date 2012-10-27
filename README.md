@@ -8,9 +8,9 @@
 
 ## Http Curl Pool Usage
     $pool       = new Pool();
-    $responses  = $pool->fetch(array(new Get('http://www.google.com/')));
+    $responses  = $pool->fetchMany(array(new Get('http://www.google.com/'), new Get('http://www.google.de/')));
     
 ## Http Curl Response Usage
     $connection = new Connection();
     $response   = $connection->fetch(new Get('http://www.google.com/'));
-    $google     = $response->document()->getElementsByTagName('title')->item(0)->textContent;
+    echo $response->document()->getElementsByTagName('title')->item(0)->textContent;

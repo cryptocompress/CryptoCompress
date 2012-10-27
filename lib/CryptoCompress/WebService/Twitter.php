@@ -167,7 +167,6 @@ class Twitter {
 	}
 
 	public function build($result, array $classNames = array()) {
-#d($result);
 		if (isset($result['error'])) {
 			throw new Exception($result['error']);
 		}

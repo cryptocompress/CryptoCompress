@@ -93,17 +93,17 @@ class WeatherTest extends \PHPUnit_Framework_TestCase {
 
 		$timeline = $twitter->timelineUser(array('count' => 1, 'exclude_replies' => true));
 		if (!$timeline->isEmpty() && $timeline->first()->timestamp() > time() - 3600) {
-			die('Aktuelles Wetter vor weniger als einer Stunde gepostet!');
+			#die('Aktuelles Wetter vor weniger als einer Stunde gepostet!');
 		}
 
-while (mb_strlen($text) > 140) {
-    $text = preg_replace('/\s+\S+$/u', '', $text);
-}
+		$text = microtime(true) . ' ' . $text;
 
-//die('<xmp>' . $repositoryTwitter->reply($text)->text() . '</xmp>');
+		while (mb_strlen($text) > 140) {
+		    $text = preg_replace('/\s+\S+$/u', '', $text);
+		}
 
-d($text);
+		$twitter->reply($text)->text();
 
-
+		$this->assertEquals($text, $text);
 	}
 }
