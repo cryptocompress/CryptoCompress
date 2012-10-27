@@ -22,9 +22,9 @@ class Request implements IRequest {
                 $options[CURLOPT_FOLLOWLOCATION] = true;
             }
 
-            $options[CURLOPT_MAXREDIRS]			= 2;
-            $options[CURLOPT_TIMEOUT]			= 2;
-            $options[CURLOPT_CONNECTTIMEOUT]	= 2;
+            $options[CURLOPT_MAXREDIRS]         = 2;
+            $options[CURLOPT_TIMEOUT]           = 2;
+            $options[CURLOPT_CONNECTTIMEOUT]    = 2;
         }
 
         $this->options  = $options;
@@ -37,7 +37,7 @@ class Request implements IRequest {
         $options = $this->options;
 
         if ($this->method == 'POST') {
-            $options[CURLOPT_POST]			= true;
+            $options[CURLOPT_POST]          = true;
             $options[CURLOPT_POSTFIELDS]    = http_build_query($this->post);
         }
 

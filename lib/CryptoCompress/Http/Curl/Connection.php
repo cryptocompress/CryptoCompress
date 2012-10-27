@@ -24,46 +24,46 @@ class Connection {
 
     public function request(IRequest $request, $multiHandle = null) {
         if (null == $this->handle) {
-	    	$this->handle = curl_init();
-    	}
+            $this->handle = curl_init();
+        }
 
-    	if (is_resource($multiHandle)) {
-    		$returnCode = curl_multi_add_handle($multiHandle, $this->handle);
-    		if ($returnCode != CURLM_OK) {
-    			throw new Exception('[' . curl_errno($this->handle) . '] ' . curl_error($this->handle), $returnCode);
-	    	}
-    	}
-
-    	foreach ($request->options() as $key => $value) {
-            if (!curl_setopt($this->handle, $key, $value)) {
-            	throw new Exception(curl_error($this->handle), curl_errno($this->handle));
+        if (is_resource($multiHandle)) {
+            $returnCode = curl_multi_add_handle($multiHandle, $this->handle);
+            if ($returnCode != CURLM_OK) {
+                throw new Exception('[' . curl_errno($this->handle) . '] ' . curl_error($this->handle), $returnCode);
             }
         }
 
-    	return $this;
+        foreach ($request->options() as $key => $value) {
+            if (!curl_setopt($this->handle, $key, $value)) {
+                throw new Exception(curl_error($this->handle), curl_errno($this->handle));
+            }
+        }
+
+        return $this;
     }
 
     public function receive($multiHandle = null) {
         if (null == $this->handle) {
-    		throw new Exception('No request set!');
-    	}
+            throw new Exception('No request set!');
+        }
 
-    	if (is_resource($multiHandle)) {
-    		$response = curl_multi_getcontent($this->handle);
-    		curl_multi_remove_handle($multiHandle, $this->handle);
-    	} else {
-    		$response = curl_exec($this->handle);
-    	}
+        if (is_resource($multiHandle)) {
+            $response = curl_multi_getcontent($this->handle);
+            curl_multi_remove_handle($multiHandle, $this->handle);
+        } else {
+            $response = curl_exec($this->handle);
+        }
 
         if ($response === false || strlen($response) < 1) {
             throw new Exception('Response was empty!' . "\n" . curl_error($this->handle), curl_errno($this->handle));
         }
 
-    	return $this->parse($response);
+        return $this->parse($response);
     }
 
     public function fetch(IRequest $request) {
-    	return $this->request($request)->receive();
+        return $this->request($request)->receive();
     }
 
     public function parse($response) {
