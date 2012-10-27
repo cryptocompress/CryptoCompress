@@ -14,7 +14,7 @@ set_error_handler(function ($code, $message, $file = null, $line = 0) {
 });
 
 spl_autoload_register(function ($class) {
-    @include __DIR__ . '/../' . $class . '.php';
+    @include __DIR__ . '/../' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
 }, true, true);
 
 if (!defined('CRYPTOCOMPRESS_PATH')) {
