@@ -2,15 +2,14 @@
 
 namespace CryptoCompress\Http\Curl;
 
-class Connection {
+use \CryptoCompress\Http\IRequest;
+
+class Connection implements \CryptoCompress\Http\ITransport {
 
     /**
      * @var resource
      */
     protected $handle;
-
-    public function __construct() {
-    }
 
     public function __destruct() {
         if (is_resource($this->handle)) {
@@ -65,6 +64,20 @@ class Connection {
     public function fetch(IRequest $request) {
         return $this->request($request)->receive();
     }
+
+    public function fetchMany(array $requests) {
+    	$responses = array();
+
+    	foreach ($requests as $key => $request) {
+    		$responses[$key] = $this->request($request)->receive();
+    	}
+
+        return $responses;
+    }
+
+	####################
+	## HELPER METHODS ##
+	####################
 
     public function parse($response) {
         $url    = curl_getinfo($this->handle, CURLINFO_EFFECTIVE_URL);

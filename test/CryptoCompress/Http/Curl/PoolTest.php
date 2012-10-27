@@ -36,9 +36,22 @@ class PoolTest extends \PHPUnit_Framework_TestCase {
     public function testDuo() {
         $pool = new Pool();
 
-        $arr = $pool->fetch(
-            array(new Get($this->url))
+        $response = $pool->fetch(
+            new Get($this->url)
         );
+
+        $this->assertEquals('CryptoCompress\Http\Curl\Response', get_class($response));
+        $this->assertEquals(200, $response->code());
+    }
+
+    public function testWithoutArray() {
+        $pool = new Pool();
+
+        $arr = $pool->fetchMany(
+            array(new Get($this->url), new Get($this->url))
+        );
+
+        $this->assertEquals(2, count($arr));
 
         $response = current($arr);
 

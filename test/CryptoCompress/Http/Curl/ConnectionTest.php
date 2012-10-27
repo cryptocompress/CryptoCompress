@@ -10,7 +10,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
     protected $url = 'http://www.google.com/';
 
     /**
-     * @expectedException    CryptoCompress\Http\Curl\Exception
+     * @expectedException   CryptoCompress\Http\Curl\Exception
      */
     public function testReceiveBeforeRequest() {
         $connection = new Connection();
@@ -41,5 +41,16 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertEquals('CryptoCompress\Http\Curl\Response', get_class($response));
         $this->assertEquals(200, $response->code());
+    }
+
+    public function testHtml() {
+        $connection = new Connection();
+
+        $response = $connection->fetch(
+            new Get($this->url)
+        );
+
+        $this->assertGreaterThan(0, $response->document()->getElementsByTagName('input')->length);
+        $this->assertEquals('Google', $response->document()->getElementsByTagName('title')->item(0)->textContent);
     }
 }

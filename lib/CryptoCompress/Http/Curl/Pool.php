@@ -2,7 +2,9 @@
 
 namespace CryptoCompress\Http\Curl;
 
-class Pool {
+use \CryptoCompress\Http\IRequest;
+
+class Pool implements \CryptoCompress\Http\ITransport {
 
     /**
      * @var resource
@@ -55,7 +57,11 @@ class Pool {
         return $results;
     }
 
-    public function fetch(array $requests) {
+    public function fetch(IRequest $request) {
+        return current($this->request(array($request))->receive());
+    }
+
+    public function fetchMany(array $requests) {
         return $this->request($requests)->receive();
     }
 }
