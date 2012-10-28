@@ -32,6 +32,5 @@
     <?php require __DIR__ . '/vendor/autoload.php';
     use \CryptoCompress\Http\Curl\Connection, \CryptoCompress\Http\Curl\Request\Get;
     $connection = new Connection();
-    echo $connection->fetch(new Get('http://twitter.com/CryptoCompress'))
-                    ->document()
+    echo $connection->getDocument('http://twitter.com/CryptoCompress')
                     ->getElementsByTagName('p')->item(3)->textContent;

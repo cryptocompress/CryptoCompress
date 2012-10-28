@@ -17,7 +17,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
 
         $response = $connection->receive();
 
-        $this->assertEquals('CryptoCompress\Http\Curl\Response', get_class($response));
+        $this->assertInstanceOf('CryptoCompress\Http\Curl\Response', $response);
         $this->assertEquals(200, $response->code());
     }
 
@@ -28,7 +28,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
             new Get($this->url)
         )->receive();
 
-        $this->assertEquals('CryptoCompress\Http\Curl\Response', get_class($response));
+        $this->assertInstanceOf('CryptoCompress\Http\Curl\Response', $response);
         $this->assertEquals(200, $response->code());
     }
 
@@ -39,8 +39,16 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase {
             new Get($this->url)
         );
 
-        $this->assertEquals('CryptoCompress\Http\Curl\Response', get_class($response));
+        $this->assertInstanceOf('CryptoCompress\Http\Curl\Response', $response);
         $this->assertEquals(200, $response->code());
+    }
+
+    public function testTrait() {
+        $connection = new Connection();
+
+        $response = $connection->getDocument($this->url);
+
+        $this->assertInstanceOf('DOMDocument', $response);
     }
 
     public function testHtml() {

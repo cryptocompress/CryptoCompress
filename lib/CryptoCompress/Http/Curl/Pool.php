@@ -5,6 +5,7 @@ namespace CryptoCompress\Http\Curl;
 use \CryptoCompress\Http\IRequest;
 
 class Pool implements \CryptoCompress\Http\ITransport {
+	use \CryptoCompress\Http\TMethods;
 
     /**
      * @var resource
