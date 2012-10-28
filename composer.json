@@ -1,5 +1,5 @@
 {
-    "name": "cryptocompress/CryptoCompress",
+    "name": "cryptocompress/cryptocompress",
     "require": {
         "php": ">=5.3.0"
     }
