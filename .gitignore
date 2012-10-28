@@ -3,3 +3,6 @@
 .settings/
 
 phpunit.xml
+
+composer.phar
+composer.lock

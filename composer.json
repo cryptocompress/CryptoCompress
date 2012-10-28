@@ -1,5 +1,13 @@
 {
     "name": "cryptocompress/cryptocompress",
+    "description": "PHP components library",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Crypto Compress",
+            "email": "cryptocompress@googlemail.com"
+        }
+    ],
     "require": {
         "php": ">=5.3.0"
     },

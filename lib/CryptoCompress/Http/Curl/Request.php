@@ -24,10 +24,14 @@ class Request implements IRequest {
                 $options[CURLOPT_FOLLOWLOCATION] = true;
             }
 
-            $options[CURLOPT_MAXREDIRS]         = 2;
-            $options[CURLOPT_TIMEOUT]           = 2;
-            $options[CURLOPT_CONNECTTIMEOUT]    = 2;
+            $options[CURLOPT_MAXREDIRS]         = 5;
+            $options[CURLOPT_TIMEOUT]           = 10;
+            $options[CURLOPT_CONNECTTIMEOUT]    = 10;
         }
+
+// on SSL certificate problem:
+//		$options[CURLOPT_SSL_VERIFYPEER]	= false;
+//		$options[CURLOPT_SSL_VERIFYHOST]	= 2;
 
         $this->options  = $options;
     }
