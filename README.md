@@ -8,21 +8,6 @@
     cd my-test-project
     curl -s http://getcomposer.org/installer | php
     php composer.phar init -n && php composer.phar require cryptocompress/cryptocompress:dev-master
-    
-### Http Curl
-
-#### single request
-    $connection = new Connection();
-    $response   = $connection->fetch(new Get('http://www.google.com/'));
-
-#### multi request
-    $pool       = new Pool();
-    $responses  = $pool->fetchMany(array(new Get('http://www.google.com/'), new Get('http://www.google.de/')));
-    
-#### response usage
-    $connection = new Connection();
-    $response   = $connection->fetch(new Get('http://www.google.com/'));
-    echo $response->document()->getElementsByTagName('title')->item(0)->textContent;
 
 ### Try out and play around
 
@@ -30,7 +15,8 @@
 ``vi weather.php && php weather.php``
 
     <?php require __DIR__ . '/vendor/autoload.php';
-        $weather = new Weather(array('url' => 'http://weather.yahooapis.com/forecastrss', 'degree' => Weather::DEGREE_CELSIUS), new Pool());
+        $config = array('url' => 'http://weather.yahooapis.com/forecastrss', 'degree' => Weather::DEGREE_CELSIUS);
+        $weather = new Weather($config, new Pool());
         var_dump($weather->getByCode(Weather::CODE_MUNICH)->current());
 
 #### Get my latest tweet
