@@ -9,15 +9,20 @@
     curl -s http://getcomposer.org/installer | php
     php composer.phar init -n && php composer.phar require cryptocompress/cryptocompress:dev-master
 
+### Update
+
+    php composer.phar update
+
 ### Try out and play around
 
 #### Get current weather in munich
 ``vi weather.php && php weather.php``
 
     <?php require __DIR__ . '/vendor/autoload.php';
-        $config = array('url' => 'http://weather.yahooapis.com/forecastrss', 'degree' => Weather::DEGREE_CELSIUS);
-        $weather = new Weather($config, new Pool());
-        var_dump($weather->getByCode(Weather::CODE_MUNICH)->current());
+    use \CryptoCompress\WebService\Yahoo\Weather, \CryptoCompress\Http\Curl\Pool;
+    $config = array('url' => 'http://weather.yahooapis.com/forecastrss', 'degree' => Weather::DEGREE_CELSIUS);
+    $weather = new Weather($config, new Pool());
+    var_dump($weather->getByCode(Weather::CODE_MUNICH)->current());
 
 #### Get my latest tweet
 ``vi tweet.php && php tweet.php``
