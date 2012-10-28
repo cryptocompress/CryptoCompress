@@ -41,6 +41,7 @@ class Weather {
 		$get = array(
 			'u' => $this->config['degree'],
 			'w'	=> $code,
+			'd'	=> 2,	// days
 		);
 
         return new Weather\Document($this->transport->fetch(new Get($this->config['url'], $get))->document());
