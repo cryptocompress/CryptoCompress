@@ -28,6 +28,6 @@
 ``vi tweet.php && php tweet.php``
 
     <?php require __DIR__ . '/vendor/autoload.php';
-    $con = new \CryptoCompress\Http\Curl\Connection()
+    $con = new \CryptoCompress\Http\Curl\Connection();
     echo $con->getDocument('http://twitter.com/CryptoCompress')
              ->getElementsByTagName('p')->item(3)->textContent;
