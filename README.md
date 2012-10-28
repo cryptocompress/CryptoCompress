@@ -26,11 +26,17 @@
 
 ### Try out and play around
 
-#### Get my latest tweet
-``vi test.php && php test.php``
+#### Get current weather in munich
+``vi weather.php && php weather.php``
 
     <?php require __DIR__ . '/vendor/autoload.php';
-    use \CryptoCompress\Http\Curl\Connection, \CryptoCompress\Http\Curl\Request\Get;
-    $connection = new Connection();
-    echo $connection->getDocument('http://twitter.com/CryptoCompress')
-                    ->getElementsByTagName('p')->item(3)->textContent;
+        $weather = new Weather(array('url' => 'http://weather.yahooapis.com/forecastrss', 'degree' => Weather::DEGREE_CELSIUS), new Pool());
+        var_dump($weather->getByCode(Weather::CODE_MUNICH)->current());
+
+#### Get my latest tweet
+``vi tweet.php && php tweet.php``
+
+    <?php require __DIR__ . '/vendor/autoload.php';
+    $con = new \CryptoCompress\Http\Curl\Connection()
+    echo $con->getDocument('http://twitter.com/CryptoCompress')
+             ->getElementsByTagName('p')->item(3)->textContent;
