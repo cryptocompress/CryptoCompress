@@ -7,7 +7,7 @@
 namespace CryptoCompress\WebService;
 
 use CryptoCompress\Http\Curl\Request\Get,
-    CryptoCompress\Http\Curl\Request\Post;
+		CryptoCompress\Http\Curl\Request\Post;
 
 class Twitter {
 
@@ -31,15 +31,14 @@ class Twitter {
 	 */
 	protected $cache;
 
-	public function __construct(array $config, \CryptoCompress\Http\ITransport $transport, $cache = false)
-	{
+	public function __construct(array $config, \CryptoCompress\Http\ITransport $transport, $cache = false) {
 		$this->config		= $config;
 		$this->transport	= $transport;
 		$this->cache		= $cache;
-    }
+	}
 
 	/**
-	 * @link	http://dev.twitter.com/docs/api/1/get/statuses/user_timeline
+	 * @link	http://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline
 	 *
 	 * @param	array	$get
 	 *								count
@@ -55,10 +54,10 @@ class Twitter {
 	 * @return	Twitter\User\TimeLine
 	 */
 	public function timelineHome(array $get = array()) {
-		$url = 'http://api.twitter.com/1/statuses/home_timeline.' . $this->config['format'];
+		$url = 'http://api.twitter.com/1.1/statuses/home_timeline.' . $this->config['format'];
 
-        return $this->build(
-            $this->transport->fetch(new Get($url, $get, array('oauth' => $this->config['oauth'])))->document(),
+		return $this->build(
+			$this->transport->fetch(new Get($url, $get, array('oauth' => $this->config['oauth'])))->document(),
 			array(
 				'\\Twitter\\User\\TimeLine',
 				'\\Twitter\\User\\TimeLine\\Twitt',
@@ -68,7 +67,7 @@ class Twitter {
 	}
 
 	/**
-	 * @link	http://dev.twitter.com/docs/api/1/get/statuses/user_timeline
+	 * @link	http://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline
 	 *
 	 * @param	array	$get
 	 *								user_id
@@ -86,10 +85,10 @@ class Twitter {
 	 * @return	Twitter\User\TimeLine
 	 */
 	public function timelineUser(array $get = array()) {
-		$url = 'http://api.twitter.com/1/statuses/user_timeline.' . $this->config['format'];
+		$url = 'http://api.twitter.com/1.1/statuses/user_timeline.' . $this->config['format'];
 
 		return $this->build(
-            $this->transport->fetch(new Get($url, $get, array('oauth' => $this->config['oauth'])))->document(),
+			$this->transport->fetch(new Get($url, $get, array('oauth' => $this->config['oauth'])))->document(),
 			array(
 				'\\Twitter\\User\\TimeLine',
 				'\\Twitter\\User\\TimeLine\\Twitt',
@@ -99,7 +98,7 @@ class Twitter {
 	}
 
 	/**
-	 * @link	http://dev.twitter.com/docs/api/1/get/friends/ids
+	 * @link	http://dev.twitter.com/docs/api/1.1/get/friends/ids
 	 *
 	 * @param	array	$get
 	 *								user_id
@@ -110,10 +109,10 @@ class Twitter {
 	 * @return
 	 */
 	public function friends(array $get = array('cursor' => -1)) {
-		$url = 'http://api.twitter.com/1/friends/ids.' . $this->config['format'];
+		$url = 'http://api.twitter.com/1.1/friends/ids.' . $this->config['format'];
 
 		return $this->build(
-            $this->transport->fetch(new Get($url, $get, array('oauth' => $this->config['oauth'])))->document(),
+			$this->transport->fetch(new Get($url, $get, array('oauth' => $this->config['oauth'])))->document(),
 			array(
 				'\\Twitter\\Friends',
 			)
@@ -121,7 +120,7 @@ class Twitter {
 	}
 
 	/**
-	 * @link	http://dev.twitter.com/docs/api/1/get/friends/ids
+	 * @link	http://dev.twitter.com/docs/api/1.1/get/friends/ids
 	 *
 	 * @param	array	$get
 	 *								user_id
@@ -131,10 +130,10 @@ class Twitter {
 	 * @return
 	 */
 	public function destroyFriendships(array $get = array(), array $post = array()) {
-		$url = 'http://api.twitter.com/1/friendships/destroy.' . $this->config['format'];
+		$url = 'http://api.twitter.com/1.1/friendships/destroy.' . $this->config['format'];
 
 		return $this->build(
-            $this->transport->fetch(new Post($url, $get, $post, array('oauth' => $this->config['oauth'])))->document(),
+			$this->transport->fetch(new Post($url, $get, $post, array('oauth' => $this->config['oauth'])))->document(),
 			array(
 				'\\Twitter\\User',
 				'status'	=> '\\Twitter\\User\\Status',
@@ -151,10 +150,10 @@ class Twitter {
 
 		$get = array();
 
-		$url = 'http://api.twitter.com/1/statuses/update.' . $this->config['format'];
+		$url = 'http://api.twitter.com/1.1/statuses/update.' . $this->config['format'];
 
 		return $this->build(
-            $this->transport->fetch(new Post($url, $get, array('status' => $text), array('oauth' => $this->config['oauth'])))->document(),
+			$this->transport->fetch(new Post($url, $get, array('status' => $text), array('oauth' => $this->config['oauth'])))->document(),
 			array(
 				'\\Twitter\\User\\TimeLine\\Twitt',
 				'user' => '\\Twitter\\User',
