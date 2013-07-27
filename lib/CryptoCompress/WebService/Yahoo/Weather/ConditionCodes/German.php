@@ -18,7 +18,7 @@ class German {
 		#$t1 = self::conditions1($text);
 		$t2 = self::conditions2($text);
 
-		file_put_contents('/var/log/twetter.log', $code . "\t=> '" . $t2 . "'\n", FILE_APPEND);
+		file_put_contents('/var/log/twetter.log', $code . "\t=> '" . $t2 . "',\n", FILE_APPEND);
 
 		return $t2;
 	}
