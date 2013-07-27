@@ -44,6 +44,7 @@ class TwitterTest extends \PHPUnit_Framework_TestCase {
 
 		$ret = $twitter->reply($text)->text();
 
-		$this->assertEquals(substr($text, 0, 140), $ret);
+		$this->assertEquals(trim(substr($text, 0, 140)), $ret);
 	}
+
 }
