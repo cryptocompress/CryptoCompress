@@ -1,13 +1,12 @@
 <?php
 
-use \CryptoCompress\WebService\Yahoo\Weather,
+use	\CryptoCompress\WebService\Yahoo\Weather,
 	\CryptoCompress\WebService\Twitter,
 	\CryptoCompress\Http\Curl\Connection,
 	\CryptoCompress\Http\Curl\Pool,
-    \CryptoCompress\Http\Curl\Response,
-    \CryptoCompress\Http\Curl\Request\Get,
-    \CryptoCompress\Http\Curl\Request\Post;
-
+	\CryptoCompress\Http\Curl\Response,
+	\CryptoCompress\Http\Curl\Request\Get,
+	\CryptoCompress\Http\Curl\Request\Post;
 
 class TwitterTest extends \PHPUnit_Framework_TestCase {
 
@@ -45,6 +44,6 @@ class TwitterTest extends \PHPUnit_Framework_TestCase {
 
 		$ret = $twitter->reply($text)->text();
 
-		$this->assertEquals($text, $ret);
+		$this->assertEquals(substr($text, 0, 140), $ret);
 	}
 }
