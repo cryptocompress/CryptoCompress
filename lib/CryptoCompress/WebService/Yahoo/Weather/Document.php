@@ -3,6 +3,7 @@
 namespace CryptoCompress\WebService\Yahoo\Weather;
 
 class Document /* implements \CryptoCompress\Interfaces\WeatherDocument */ {
+
 	/**
 	 * @var	\DOMDocument
 	 */
@@ -13,7 +14,7 @@ class Document /* implements \CryptoCompress\Interfaces\WeatherDocument */ {
 	}
 
 	public function __destruct() {
-        $this->document = null;
+		$this->document = null;
 	}
 
 	/**
@@ -24,40 +25,40 @@ class Document /* implements \CryptoCompress\Interfaces\WeatherDocument */ {
 	}
 
 	protected function parse() {
-        if (empty($this->data)) {
-            $this->data = array();
+		if (empty($this->data)) {
+			$this->data = array();
 
-            $xpath = new \DOMXPath($this->document);
-            $nodes = $xpath->query('//yweather:*');
-            foreach ($nodes as $node) {
-                list (, $name) = explode(':', $node->getNodePath());
+			$xpath = new \DOMXPath($this->document);
+			$nodes = $xpath->query('//yweather:*');
+			foreach ($nodes as $node) {
+				list (, $name) = explode(':', $node->getNodePath());
 
-                foreach ($node->attributes as $attribute) {
-                    $this->data[$name][$attribute->name] = $attribute->value;
-                }
-            }
-        }
+				foreach ($node->attributes as $attribute) {
+					$this->data[$name][$attribute->name] = $attribute->value;
+				}
+			}
+		}
 
-        return $this->data;
+		return $this->data;
 	}
 
-    /**
+	/**
 	 * @return	array
 	 */
 	public function current() {
-        $this->parse();
+		$this->parse();
 
-        return array(
+		return array(
 			'temp'	=> $this->data['condition']['temp'],
-            'text'	=> $this->translate($this->data['condition']['code'], $this->data['condition']['text']),
-        );
+			'text'	=> $this->translate($this->data['condition']['code'], $this->data['condition']['text']),
+		);
 	}
 
 	/**
 	 * @return	array
 	 */
 	public function forecast($day = 0) {
-        $this->parse();
+		$this->parse();
 
 		return array(
 			'low'	=> $this->data['forecast[' . ($day + 1) . ']']['low'],
@@ -66,18 +67,18 @@ class Document /* implements \CryptoCompress\Interfaces\WeatherDocument */ {
 		);
 	}
 
-    public function atmosphere($key = null) {
-        $this->parse();
+	public function atmosphere($key = null) {
+		$this->parse();
 
-        if (isset($key)) {
-            return $this->data['atmosphere'][$key];
-        }
+		if (isset($key)) {
+			return $this->data['atmosphere'][$key];
+		}
 
-        return $this->data['atmosphere'];
-    }
+		return $this->data['atmosphere'];
+	}
 
-    protected function translate($code, $text) {
-        return \CryptoCompress\WebService\Yahoo\Weather\ConditionCodes\German::get($code, $text);
-    }
+	protected function translate($code, $text) {
+		return \CryptoCompress\WebService\Yahoo\Weather\ConditionCodes\German::get($code, $text);
+	}
 
 }

@@ -9,7 +9,7 @@ class Weather {
 	const DEGREE_CELSIUS	= 'c';
 	const DEGREE_FAHRENHEIT	= 'f';
 
-    const CODE_MUNICH = 676757;
+	const CODE_MUNICH = 676757;
 
 	/**
 	 * @var	array
@@ -28,7 +28,7 @@ class Weather {
 	public function __construct(array $config, \CryptoCompress\Http\ITransport $transport) {
 		$this->config		= $config;
 		$this->transport	= $transport;
-    }
+		}
 
 	/**
 	 * 'http://weather.yahooapis.com/forecastrss?u=c&w=' . 676757;
@@ -44,6 +44,7 @@ class Weather {
 			'd'	=> 2,	// days
 		);
 
-        return new Weather\Document($this->transport->fetch(new Get($this->config['url'], $get))->document());
+		return new Weather\Document($this->transport->fetch(new Get($this->config['url'], $get))->document());
 	}
+
 }

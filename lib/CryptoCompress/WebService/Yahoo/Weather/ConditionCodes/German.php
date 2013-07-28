@@ -5,11 +5,13 @@ namespace CryptoCompress\WebService\Yahoo\Weather\ConditionCodes;
 class German {
 
 	private static $t = array(
+		4	=> 'Gewitter/Wind',
 		30	=> 'teilweise bewölkt',
 		32	=> 'Sonnig',
 		33	=> 'überwiegend klar',
 		34	=> 'heiter',
 		39	=> 'nachmittags Gewitterschauer',
+		#47	=> 'früh Gewitter',
 	);
 
 	public static function get($code, $text) {
@@ -20,7 +22,10 @@ class German {
 		#$t1 = self::conditions1($text);
 		$t2 = self::conditions2($text);
 
-		file_put_contents('/var/log/twetter.log', $code . "\t=> '" . $t2 . "',\n", FILE_APPEND);
+		$logFile = '/var/log/twetter.log';
+		if (is_writable($logFile)) {
+			file_put_contents($logFile, $code . "\t=> '" . $t2 . "',\n" . $code . "\t=> '" . $text . "',\n", FILE_APPEND);
+		}
 
 		return $t2;
 	}
