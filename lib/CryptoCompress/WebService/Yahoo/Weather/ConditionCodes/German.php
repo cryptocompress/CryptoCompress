@@ -6,8 +6,10 @@ class German {
 
 	private static $t = array(
 		30	=> 'teilweise bewölkt',
+		32	=> 'Sonnig',
 		33	=> 'überwiegend klar',
 		34	=> 'heiter',
+		39	=> 'nachmittags Gewitterschauer',
 	);
 
 	public static function get($code, $text) {
@@ -33,10 +35,10 @@ class German {
 		elseif($input == "Blowing Snow") $data = "Schneetreiben";
 		elseif($input == "Drizzle") $data = "Nieselregen";
 		elseif($input == "Light Rain Shower") $data = "leichter Regenschauer";
-		elseif($input == "Sunny") $data = "Sonnig";
-		elseif($input == "Fair") $data = "Heiter";
+		elseif($input == "Sunny") $data = "sonnig";
+		elseif($input == "Fair") $data = "heiter";
 		elseif($input == "Light Drizzle") $data = "leichter Nieselregen";
-		elseif($input == "Wintry Mix") $data = "Winterlicher Mix";
+		elseif($input == "Wintry Mix") $data = "winterlicher Mix";
 		elseif($input == "Clear") $data = "klar";
 		elseif($input == "Light Snow") $data = "leichter Schneefall";
 		elseif($input == "Fog") $data = "Nebel";
@@ -83,7 +85,7 @@ class German {
 		elseif($input == "Snow Grains") $data = "Schneegriesel";
 		elseif($input == "Partial Fog") $data = "teilweise Nebel";
 		elseif($input == "Snow/Windy") $data = "Schnee/windig";
-		elseif($input == "Fair/Windy") $data = "Heiter/windig";
+		elseif($input == "Fair/Windy") $data = "heiter/windig";
 		elseif($input == "Heavy Snow/Windy") $data = "starker Schneefall/windig";
 		elseif($input == "Heavy Snow") $data = "starker Schneefall";
 		elseif($input == "Light Snow Shower/Fog") $data = "leichter Schneeschauer/Nebel";
@@ -100,7 +102,7 @@ class German {
 		elseif($input == "Heavy Rain/Windy") $data = "starker Regen/windig";
 		elseif($input == "Fog/Windy") $data = "Nebel/windig";
 		elseif($input == "Unknown") $data = "unbekannt";
-		elseif($input == "Sunny/Windy") $data = "Sonnig/windig";
+		elseif($input == "Sunny/Windy") $data = "sonnig/windig";
 		elseif($input == "Sleet and Freezing Rain") $data = "Schneeregen und gefrierender Regen";
 		elseif($input == "Clear/Windy") $data = "klar/windig";
 		elseif($input == "Thunderstorm/Windy") $data = "Gewitter/windig";
@@ -153,8 +155,8 @@ class German {
 		elseif($input == "Drizzle/Fog") $data = "Nieselregen/Nebel";
 		elseif($input == "Drizzle/Wind") $data = "Nieselregen/Wind";
 		elseif($input == "Drizzle/Windy") $data = "Nieselregen/windig";
-		elseif($input == "Fair") $data = "Heiter";
-		elseif($input == "Fair/Windy") $data = "Heiter/windig";
+		elseif($input == "Fair") $data = "heiter";
+		elseif($input == "Fair/Windy") $data = "heiter/windig";
 		elseif($input == "Few Showers") $data = "vereinzelte Schauer";
 		elseif($input == "Few Showers/Wind") $data = "vereinzelte Schauer/Wind";
 		elseif($input == "Few Snow Showers") $data = "vereinzelt Schneeschauer";
@@ -286,9 +288,9 @@ class German {
 		elseif($input == "Snow/Wind") $data = "Schneefall/Wind";
 		elseif($input == "Snow/Windy") $data = "Schnee/windig";
 		elseif($input == "Squalls") $data = "Böen";
-		elseif($input == "Sunny") $data = "Sonnig";
-		elseif($input == "Sunny/Wind") $data = "Sonnig/Wind";
-		elseif($input == "Sunny/Windy") $data = "Sonnig/windig";
+		elseif($input == "Sunny") $data = "sonnig";
+		elseif($input == "Sunny/Wind") $data = "sonnig/Wind";
+		elseif($input == "Sunny/Windy") $data = "sonnig/windig";
 		elseif($input == "T-showers") $data = "Gewitterschauer";
 		elseif($input == "Thunder in the Vicinity") $data = "Gewitter in der Umgebung";
 		elseif($input == "Thunder") $data = "Gewitter";
@@ -301,7 +303,7 @@ class German {
 		elseif($input == "Thunderstorms") $data = "Gewitter";
 		elseif($input == "Unknown Precipitation") $data = "Niederschlag";
 		elseif($input == "Unknown") $data = "unbekannt";
-		elseif($input == "Wintry Mix") $data = "Winterlicher Mix";
+		elseif($input == "Wintry Mix") $data = "winterlicher Mix";
 		else $data = $input;
 
 		return $data;
