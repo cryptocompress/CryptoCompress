@@ -4,27 +4,15 @@ namespace CryptoCompress\WebService\Yahoo\Weather\ConditionCodes;
 
 class German {
 
-	private static $t = array(
-		4	=> 'Gewitter/Wind',
-		30	=> 'teilweise bewölkt',
-		32	=> 'Sonnig',
-		33	=> 'überwiegend klar',
-		34	=> 'heiter',
-		39	=> 'nachmittags Gewitterschauer',
-		#47	=> 'früh Gewitter',
-	);
-
 	public static function get($code, $text) {
-		if (isset(self::$t[$code])) {
-			return self::$t[$code];
-		}
-
 		#$t1 = self::conditions1($text);
 		$t2 = self::conditions2($text);
 
-		$logFile = '/var/log/twetter.log';
-		if (is_writable($logFile)) {
-			file_put_contents($logFile, $code . "\t=> '" . $t2 . "',\n" . $code . "\t=> '" . $text . "',\n", FILE_APPEND);
+		if (empty($t2)) {
+			$logFile = '/var/log/twetter.log';
+			if (is_writable($logFile)) {
+				file_put_contents($logFile, $code . "\t=> '" . $text . "',\n", FILE_APPEND);
+			}
 		}
 
 		return $t2;
@@ -35,7 +23,7 @@ class German {
 		elseif($input == "Haze") $data = "Dunst";
 		elseif($input == "Unknown Precipitation") $data = "Niederschlag";
 		elseif($input == "Partly Cloudy") $data = "teilweise bewölkt";
-		elseif($input == "Cloudy")	 $data = "Bewölkt";
+		elseif($input == "Cloudy")	 $data = "bewölkt";
 		elseif($input == "Mostly Cloudy") $data = "überwiegend bewölkt";
 		elseif($input == "Blowing Snow") $data = "Schneetreiben";
 		elseif($input == "Drizzle") $data = "Nieselregen";
@@ -148,9 +136,9 @@ class German {
 		elseif($input == "Blowing Snow") $data = "Schneetreiben";
 		elseif($input == "Clear") $data = "klar";
 		elseif($input == "Clear/Windy") $data = "klar/windig";
-		elseif($input == "Clouds Early/Clearing Late") $data = "früh Bewölkt/später klar";
-		elseif($input == "Cloudy") $data = "Bewölkt";
-		elseif($input == "Cloudy/Wind") $data = "Bewölkt/Wind";
+		elseif($input == "Clouds Early/Clearing Late") $data = "früh bewölkt/später klar";
+		elseif($input == "Cloudy") $data = "bewölkt";
+		elseif($input == "Cloudy/Wind") $data = "bewölkt/Wind";
 		elseif($input == "Cloudy/Windy") $data = "Wolkig/windig";
 		elseif($input == "Drifting Snow") $data = "Schneetreiben";
 		elseif($input == "Drifting Snow/Windy") $data = "Schneetreiben/windig";

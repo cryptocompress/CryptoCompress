@@ -28,7 +28,7 @@ class Weather {
 	public function __construct(array $config, \CryptoCompress\Http\ITransport $transport) {
 		$this->config		= $config;
 		$this->transport	= $transport;
-		}
+	}
 
 	/**
 	 * 'http://weather.yahooapis.com/forecastrss?u=c&w=' . 676757;
