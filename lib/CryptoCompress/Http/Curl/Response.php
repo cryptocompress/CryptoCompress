@@ -93,7 +93,7 @@ class Response {
         $document->validateOnParse      = false;
         $document->strictErrorChecking  = true;
         $document->preserveWhiteSpace   = false;
-        #$document->substituteEntities   = true; // do not substitute (external!!!) entities automaticaly
+        #$document->substituteEntities   = false; // do not substitute (external!!!) entities automatically @see: https://www.owasp.org/index.php/XML_External_Entity_%28XXE%29_Processing (XML External Entity (XXE) Processing)
         $document->formatOutput         = true;
 
         $document->{'load' . strtoupper($type)}($message);
