@@ -93,7 +93,7 @@ class Response {
         $document->validateOnParse      = false;
         $document->strictErrorChecking  = true;
         $document->preserveWhiteSpace   = false;
-        $document->substituteEntities   = true;
+        #$document->substituteEntities   = true; // do not substitute (external!!!) entities automaticaly
         $document->formatOutput         = true;
 
         $document->{'load' . strtoupper($type)}($message);
